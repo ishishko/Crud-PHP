@@ -3,48 +3,57 @@
 <head>
 <meta charset="utf-8">
 <title>Documento sin título</title>
+<style>
+
+	table{
+		width: 50%;
+		border: 2px dotted #ff0000;
+		margin: auto;
+	}
+
+</style>
 </head>
 
 	
 <body>
 	<?php
 	
-	$db_host="localhost"; //carga de info de BBDD en variables
-	$db_nombre="pruebas";
-	$db_usuario="root";
-	$db_contra="";
+		require("datos_conexion.php");
 	
-	$conexion=mysqli_connect($db_host,$db_usuario,$db_contra); //Conexion con BBDD
+		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra); //Conexion con BBDD
 	
-	if(mysqli_connect_errno()){		//Mensaje de error BD
+		if(mysqli_connect_errno()){		//Mensaje de error BD
 		
-		echo "Fallo al Conectar A la BBDD";
+			echo "Fallo al Conectar A la BBDD";
 		
-		exit();
+			exit();
 		
-	}
+		}
 	
-	mysqli_select_db($conexion, $db_nombre) or die ("No se encuentra la BBDD"); //Conexion a tabla con mensaje de error
+		mysqli_select_db($conexion, $db_nombre) or die ("No se encuentra la BBDD"); //Conexion a tabla con mensaje de error
 	
-	mysqli_set_charset($conexion, "utf8"); //determinamos uso de caracteres
+		mysqli_set_charset($conexion, "utf8"); //determinamos uso de caracteres
 	
-	$consulta="SELECT * FROM DATOSPERSONALES";
+		$consulta="SELECT * FROM contactos_celulares_bps_ddjj where Provincia='Buenos Aires'";
 	
-	$resultados=mysqli_query($conexion, $consulta);
+		$resulset=mysqli_query($conexion, $consulta); //guardado de array tabla
 	
-	while($fila=mysqli_fetch_row($resultados)){
+		while($fila=mysqli_fetch_row($resulset)){
 	
-		//$fila=mysqli_fetch_row($resultados);
+		
+			echo $fila[0] . "  ";
+			echo $fila[1] . "  ";
+			echo $fila[2] . "  ";
+			echo $fila[3] . "  ";
+			echo $fila[4] . "  ";
+			echo $fila[5] . "  ";
+			echo $fila[6] . "  ";
+			echo $fila[7] . "  ";
+			echo "<br>";
+			echo "<br>";
+		}
 	
-		echo $fila[0] . "  ";
-		echo $fila[1] . "  ";
-		echo $fila[2] . "  ";
-		echo $fila[3] . "  ";
-		echo "<br>";
-		echo "<br>";
-	}
-	
-	mysqli_close($conexion);
+		mysqli_close($conexion); //Desconeccion
 	
 	?>
 	
