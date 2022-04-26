@@ -34,21 +34,18 @@
 	
 		mysqli_set_charset($conexion, "utf8"); //determinamos uso de caracteres
 	
-		$consulta="SELECT * FROM contactos_celulares_bps_ddjj where Provincia='Buenos Aires'";
+		$consulta="SELECT * FROM contactos_celulares_bps_ddjj";
 	
 		$resulset=mysqli_query($conexion, $consulta); //guardado de array tabla
 	
-		while($fila=mysqli_fetch_row($resulset)){
+		while($fila=mysqli_fetch_array($resulset, MYSQLI_ASSOC)){
 	
-		
-			echo $fila[0] . "  ";
-			echo $fila[1] . "  ";
-			echo $fila[2] . "  ";
-			echo $fila[3] . "  ";
-			echo $fila[4] . "  ";
-			echo $fila[5] . "  ";
-			echo $fila[6] . "  ";
-			echo $fila[7] . "  ";
+			echo "<table><tr><td>";
+			echo $fila['Numero'] . "</td><td> ";
+			echo $fila['Codigo'] . "</td><td> ";
+			echo $fila['Nombre'] . "</td><td> ";
+			echo $fila['Organizacion'] . "</td><td> ";
+			echo $fila['Provincia'] . "</td><td></tr></table>";
 			echo "<br>";
 			echo "<br>";
 		}
