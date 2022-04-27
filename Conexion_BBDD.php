@@ -38,7 +38,7 @@
 	
 		$resulset=mysqli_query($conexion, $consulta); //guardado de array tabla
 	
-		while($fila=mysqli_fetch_array($resulset, MYSQLI_ASSOC)){
+		while($fila=mysqli_fetch_array($resulset, MYSQLI_ASSOC)){ //Array Asociativa
 	
 			echo "<table><tr><td>";
 			echo $fila['Numero'] . "</td><td> ";
