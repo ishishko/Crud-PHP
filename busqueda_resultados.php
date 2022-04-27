@@ -24,18 +24,17 @@ function ejecuta_consulta($labusqueda)  {
 	
 	mysqli_set_charset($conexion, "utf8"); //determinamos uso de caracteres
 	
-	$consulta="SELECT * FROM contactos_celulares_bps_ddjj WHERE ORGANIZACION like '%$labusqueda'";
+	$consulta="SELECT * FROM datospersonales WHERE NIF like '%$labusqueda%'";
 	
 	$resulset=mysqli_query($conexion, $consulta); //guardado de array tabla
 	
 	while($fila=mysqli_fetch_array($resulset, MYSQLI_ASSOC)){ //Array Asociativa
 	
 		echo "<table><tr><td>";
-		echo $fila['Numero'] . "</td><td> ";
-		echo $fila['Codigo'] . "</td><td> ";
-		echo $fila['Nombre'] . "</td><td> ";
-		echo $fila['Organizacion'] . "</td><td> ";
-		echo $fila['Provincia'] . "</td><td></tr></table>";
+		echo $fila['NIF'] . "</td><td> ";
+		echo $fila['NOMBRE'] . "</td><td> ";
+		echo $fila['APELLIDO'] . "</td><td> ";
+		echo $fila['EDAD'] . "</td><td></tr></table>";
 		echo "<br>";
 		echo "<br>";
 	}
