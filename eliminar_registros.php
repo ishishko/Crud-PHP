@@ -29,7 +29,7 @@
         
         mysqli_set_charset($conexion, "utf8"); //determinamos uso de caracteres
         
-        $consulta="DELETE FROM datospersonales WHERE NIF='$nif'";
+        $consulta="DELETE FROM datospersonales WHERE DNI='$dni'";
         
         $resulset=mysqli_query($conexion, $consulta); //guardado de array tabla
         

@@ -10,7 +10,7 @@
         
         require("datos_conexion.php"); //Solicita datos de conexion
 
-        $nif=$_GET["nif"];
+        $dni=$_GET["dni"];
         $nom=$_GET["nombre"];
         $ape=$_GET["ape"];
         $eda=$_GET["edad"];
@@ -29,7 +29,7 @@
         
         mysqli_set_charset($conexion, "utf8"); //determinamos uso de caracteres
         
-        $consulta="INSERT INTO datospersonales (NIF, NOMBRE, APELLIDO, EDAD) VALUES ('$nif', '$nom', '$ape', $eda)";
+        $consulta="INSERT INTO datospersonales (DNI, NOMBRE, APELLIDO, EDAD) VALUES ('$dni', '$nom', '$ape', $eda)";
         
         $resulset=mysqli_query($conexion, $consulta); //guardado de array tabla
         
@@ -39,7 +39,7 @@
 
         }else{
 
-            echo "Registro GUARDADO<br><br>" . "$nif<br>" . "$nom<br>" . "$ape<br>" . "$eda<br>";
+            echo "Registro GUARDADO<br><br>" . "$dni<br>" . "$nom<br>" . "$ape<br>" . "$eda<br>";
             
         }
         mysqli_close($conexion); //Desconeccion

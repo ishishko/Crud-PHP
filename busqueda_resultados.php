@@ -24,14 +24,14 @@ function ejecuta_consulta($labusqueda)  {
 	
 	mysqli_set_charset($conexion, "utf8"); //determinamos uso de caracteres
 	
-	$consulta="SELECT * FROM datospersonales WHERE NIF like '%$labusqueda%'";
+	$consulta="SELECT * FROM datospersonales WHERE DNI like '%$labusqueda%'";
 	
 	$resulset=mysqli_query($conexion, $consulta); //guardado de array tabla
 	
 	while($fila=mysqli_fetch_array($resulset, MYSQLI_ASSOC)){ //Array Asociativa
 	
 		echo "<table><tr><td>";
-		echo $fila['NIF'] . "</td><td> ";
+		echo $fila['DNI'] . "</td><td> ";
 		echo $fila['NOMBRE'] . "</td><td> ";
 		echo $fila['APELLIDO'] . "</td><td> ";
 		echo $fila['EDAD'] . "</td><td></tr></table>";

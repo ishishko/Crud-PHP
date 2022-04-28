@@ -31,9 +31,9 @@
     <form name="form1" method="get" action="insertar_registros.php">
         <table border="0" align="center">
             <tr>
-                <td>NIF</td>
-                <td><label for="nif"></label>
-                <input type="text" name="nif" id="nif"></td>
+                <td>DNI</td>
+                <td><label for="dni"></label>
+                <input type="text" name="dni" id="dni"></td>
             </tr>
 
             <tr>
