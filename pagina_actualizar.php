@@ -18,19 +18,24 @@
 	
 	mysqli_set_charset($conexion, "utf8"); //determinamos uso de caracteres
 	
-	$consulta="SELECT * FROM datospersonales WHERE DNI like '%$busqueda'";
+	$consulta="SELECT * FROM datospersonales WHERE dni like '%$busqueda'";
 	
 	$resulset=mysqli_query($conexion, $consulta); //guardado de array tabla
 	
 	while($fila=mysqli_fetch_array($resulset, MYSQLI_ASSOC)){ //Array Asociativa
 	
-		echo "<table><tr><td>";
-		echo $fila['DNI'] . "</td><td> ";
-		echo $fila['NOMBRE'] . "</td><td> ";
-		echo $fila['APELLIDO'] . "</td><td> ";
-		echo $fila['EDAD'] . "</td><td></tr></table>";
-		echo "<br>";
-		echo "<br>";
+		//echo "<table><tr><td>";
+
+		echo "<form action='actualizar.php' method='get'";
+		echo "<input type='text' name='dni' value='" . $fila['DNI'] . "'><br>";
+		echo "<input type='text' name='dni' value='" . $fila['DNI'] . "'><br>";
+		echo "<input type='text' name='nom' value='" . $fila['NOMBRE'] . "'><br>";
+		echo "<input type='text' name='ape' value='" . $fila['APELLIDO'] . "'><br>";
+		echo "<input type='text' name='eda' value='" . $fila['EDAD'] . "'><br>";
+
+		echo "<input type='submit' name='enviando' value='ACTUALIZAR'>";
+		
+		echo "</form>";
 	}
 	
 	mysqli_close($conexion); //Desconeccion
