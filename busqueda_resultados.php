@@ -12,6 +12,8 @@ function ejecuta_consulta($labusqueda)  {
 
     $conexion=mysqli_connect($db_host,$db_usuario,$db_contra); //Conexion con BBDD
 	
+	$busqueda=mysqli_real_escape_string($conexion, $labusqueda);
+
 	if(mysqli_connect_errno()){		//Mensaje de error BD
 		
 			echo "Fallo al Conectar A la BBDD";
@@ -24,7 +26,7 @@ function ejecuta_consulta($labusqueda)  {
 	
 	mysqli_set_charset($conexion, "utf8"); //determinamos uso de caracteres
 	
-	$consulta="SELECT * FROM datospersonales WHERE DNI like '%$labusqueda%'";
+	$consulta="SELECT * FROM datospersonales WHERE DNI like '%$busqueda%'";
 	
 	$resulset=mysqli_query($conexion, $consulta); //guardado de array tabla
 	

@@ -1,10 +1,10 @@
 <?php
 	
-    $busqueda=$_GET["buscar"];
-
-	require("datos_conexion.php");
+    	require("datos_conexion.php");
 
     $conexion=mysqli_connect($db_host,$db_usuario,$db_contra); //Conexion con BBDD
+	
+	$busqueda=mysqli_real_escape_string($conexion, $_GET["buscar"]);
 	
 	if(mysqli_connect_errno()){		//Mensaje de error BD
 		
@@ -24,8 +24,7 @@
 	
 	while($fila=mysqli_fetch_array($resulset, MYSQLI_ASSOC)){ //Array Asociativa
 	
-		//echo "<table><tr><td>";
-
+		
 		echo "<form action='actualizar.php' method='get'";
 		echo "<input type='text' name='dni' value='" . $fila['DNI'] . "'><br>";
 		echo "<input type='text' name='dni' value='" . $fila['DNI'] . "'><br>";

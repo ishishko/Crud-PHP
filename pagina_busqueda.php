@@ -1,10 +1,10 @@
 <?php
 	
-    $busqueda=$_GET["buscar"];
-
 	require("datos_conexion.php");
 
     $conexion=mysqli_connect($db_host,$db_usuario,$db_contra); //Conexion con BBDD
+	
+	$busqueda=mysqli_real_escape_string($conexion, $_GET["buscar"]);
 	
 	if(mysqli_connect_errno()){		//Mensaje de error BD
 		

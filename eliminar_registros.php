@@ -10,13 +10,14 @@
         
         require("datos_conexion.php"); //Solicita datos de conexion
 
-        $nif=$_GET["nif"];
-        $nom=$_GET["nombre"];
-        $ape=$_GET["ape"];
-        $eda=$_GET["edad"];
-
         $conexion=mysqli_connect($db_host,$db_usuario,$db_contra); //Conexion con BBDD
         
+        $dni=mysqli_real_escape_string($conexion, $_GET["dni"]);
+        $nom=mysqli_real_escape_string($conexion, $_GET["nom"]);
+        $ape=mysqli_real_escape_string($conexion, $_GET["ape"]);
+        $eda=mysqli_real_escape_string($conexion, $_GET["edad"]);
+
+
         if(mysqli_connect_errno()){		//Mensaje de error BD
             
                 echo "Fallo al Conectar A la BBDD";
