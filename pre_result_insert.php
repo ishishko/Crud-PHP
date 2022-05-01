@@ -9,11 +9,14 @@
     <?php
 	
 	    require("datos_conexion.php");
-		$dni=$_GET['buscar'];
-        
+		
+		$dni=$_GET['dni'];
+        $nom=$_GET['nom'];
+		$ape=$_GET['ape'];
+		$edad=$_GET['edad'];
+
 		$conexion=mysqli_connect($db_host,$db_usuario,$db_contra); //Conexion con BBDD
         
-	    $busqueda=mysqli_real_escape_string($conexion, $_GET["buscar"]);
 	    
     	if(mysqli_connect_errno()){		//Mensaje de error BD
 		
@@ -27,9 +30,9 @@
 		
 	    mysqli_set_charset($conexion, "utf8"); //determinamos uso de caracteres
 		
-		$sql="SELECT * FROM datospersonales WHERE DNI= ?";
+		$sql="INSERT INTO datospersonales (DNI, NOMBRE, APELLIDO,EDAD) VALUES (?,?,?,?)";
 		$resulset=mysqli_prepare($conexion, $sql); // Objeto mysqli
-		$ok=mysqli_stmt_bind_param($resulset,"s",$dni);
+		$ok=mysqli_stmt_bind_param($resulset,"sssi",$dni, $nom, $ape, $edad);
 		$ok=mysqli_stmt_execute($resulset);
 		
 		if($ok=false){
@@ -37,18 +40,11 @@
 			echo "Error ejecutando CONSULTA";
 		
 		}else{
-
-			$ok=mysqli_stmt_bind_result($resulset, $dniok, $nombreok, $apellidook, $edadok);
-			echo "Usuarios Encontrados: <br><br>";
-
-			while(mysqli_stmt_fetch($resulset)){
-
-				echo "DNI:$dniok  NOMBRE:$nombreok  APELLIDO:$apellidook  EDAD:$edadok <br>";
-
-			}
+			echo "Usuario Guardado: <br><br>";
+			echo "DNI:$dni <br> NOMBRE:$nom <br> APELLIDO:$ape <br> EDAD:$edad <br>";
 			
 			mysqli_stmt_close($resulset);
-		}
+			}
 	
     ?>
 
