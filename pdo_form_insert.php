@@ -19,13 +19,14 @@
 
 </head>
 <body>
-    <form action="pdo_pag_busqueda.php" method="get">
+    <form action="pdo_pag_insert.php" method="POST">
         <table>
             <tr><td>DNI</td><td><input type="text" name="dni"></td></tr>
-            <tr><td>APELLIDO</td><td><input type="text" name="apellido"></td></tr>
-            <tr><td><input type="submit" name="enviado" value="DALE!"></td></tr>
+            <tr><td>NOMBRE</td><td><input type="text" name="nom"></td></tr>
+            <tr><td>APELLIDO</td><td><input type="text" name="ape"></td></tr>
+            <tr><td>EDAD</td><td><input type="text" name="edad"></td></tr>
+            <tr><td><input type="submit" name="enviado" value="INSERTAR"></td></tr>
         </table>
-
     </form>
 
 </body>
