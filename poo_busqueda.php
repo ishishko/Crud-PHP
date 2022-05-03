@@ -9,11 +9,22 @@
             parent::__construct();
         }
 
-        function get_buscar(){ //METODO
-            $resulset=$this->conexion->query('SELECT * FROM DATOSPERSONALES');
-            $busqueda=$resulset->fetch_all(MYSQLI_ASSOC);
-            return $busqueda;
+        function get_buscar($dato) //METODO
+        {
+        $sql="SELECT * FROM DATOSPERSONALES WHERE DNI='".$dato."' OR NOMBRE='". $dato ."' OR APELLIDO='". $dato . "' OR EDAD='". $dato . "'";
+        $sentencia=$this->conexion->prepare($sql);
+        $sentencia->execute(array());
+        $resulset=$sentencia->fetchAll(pdo::FETCH_ASSOC);
+        $sentencia->closeCursor();
+        return $resulset;
+        $this->conexion=null;
         }
+        /*{ 
+            $resulset=$this->conexion->query('SELECT * FROM DATOSPERSONALES WHERE DNI="'. $dato . '" OR
+            NOMBRE="'. $dato . '" OR APELLIDO="'. $dato . '" OR EDAD="'. $dato . '"');
+            $busqueda=$resulset->fetchAll(MYSQLI_ASSOC);
+            return $busqueda;
+        }*/
     } 
 
 

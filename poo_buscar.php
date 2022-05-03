@@ -2,8 +2,9 @@
 
     require './poo_busqueda.php';
     
+    $dato=$_GET['buscar'];
     $buscar =new Busqueda;
-    $array_buscar=$buscar->get_buscar();
+    $array_buscar=$buscar->get_buscar($dato);
 
     ?>
 
