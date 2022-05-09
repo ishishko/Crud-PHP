@@ -7,7 +7,7 @@
 <body>
     <?php
     session_start();
-    if(!isset($_SESSION['usuario'])){
+    if(!isset($_SESSION['usuario'])){ //Comprobacion sesion iniciada
         header('location:login.php');
     }
     ?>
@@ -33,7 +33,7 @@
       </tbody>
 </table>
 	<p>&nbsp;</p>
-	
+	<p><a href="./login.php">Cierra SESSION</a></p> 
 	
 </body>
 </html>

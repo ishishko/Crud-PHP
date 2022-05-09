@@ -7,7 +7,7 @@
 <body>
     <?php
     session_start();
-    if(!isset($_SESSION['usuario'])){
+    if(!isset($_SESSION['usuario'])){ //Comprobacion sesion iniciada
         header('location:login.php');
     }
 
@@ -23,5 +23,6 @@
     </p>
     <p>&nbsp;</p>
     <p><a href="usuarios_registrados1.php">Volver</a></p>
+    
 </body>
 </html>

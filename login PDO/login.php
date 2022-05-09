@@ -21,6 +21,12 @@
 </style>
 </head>
 <body>
+        <?php
+    
+        session_start();
+        session_destroy();
+    
+        ?>
     <h1>Introduce tus DATOS</h1>
     
     <form action="./comprueba_login.php" method="POST" name="formulario">
