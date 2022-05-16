@@ -1,0 +1,24 @@
+
+    h1,h2,h3{
+        text-align: center;
+    }
+    table{
+        width: 60%;
+        margin: auto;
+        background-color: #ffc;
+        border: 2px solid #f00;
+        padding: 5px;
+    }
+
+    td{
+        text-align: center;
+    }
+    .cen{
+        text-align: center;
+    }
+    .izq{
+        text-align: left;
+    }
+    .der{
+        text-align: right;
+    }
