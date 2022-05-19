@@ -2,13 +2,13 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<title>Documento sin título</title>
+<title>Login CRUD</title>
 <style>
     h1,h2,h3{
         text-align: center;
     }
     table{
-        width: 60%;
+        width: 18pc;
         margin: auto;
         background-color: #ffc;
         border: 2px solid #f00;
@@ -33,6 +33,19 @@
 
     <?php
     
+    if(isset($_COOKIE["usuario"]))                  //Verifica inicio sesion guardada
+    {
+        session_start();
+        $_SESSION["usuario"]=$_COOKIE["usuario"];
+        
+    }
+
+    session_start();
+    if(isset($_SESSION["usuario"]))                 //Verifica Sesion Iniciada
+    {
+        header("Location: ./form_index.php");
+    }
+
     if(isset($_POST['login'])){
         try                        //TRY LOGIN
         {
@@ -52,19 +65,19 @@
                 if(password_verify($pass, $array[2])){     //Compara contraseña encriptada
                     if(isset($_POST['recordar']))
                     {
-                        echo '<h3>USUARIO LOGUEADO<h3>';
                         session_start();
-                        $_SESSION["usuario"]=$array[1];                     //Inicia Sesion
+                        $_SESSION["usuario"]=$_POST["user"];                     //Inicia Sesion
                         setcookie("usuario", $array[1],time()+82400);       //Crea Cookie Usuario logueado 1 mes
-                        echo $_SESSION["usuario"] . '<br>';
                         $resulset->closeCursor();
-                        exit;
+                        header("Location: ./form_index.php");
                     }else{
                         session_start();
-                        $_SESSION["usuario"]=$array[1];
-                        echo $_SESSION["usuario"] . '<br>';
-                        exit;
+                        $_SESSION["usuario"]=$_POST["user"];                     //Inicia Sesion
+                        $resulset->closeCursor();
+                        header("Location: ./form_index.php");
                     }
+                }else{
+                    echo "<h3>Usuario o Password Incorrectas</h3>";
                 }
             }    
             
