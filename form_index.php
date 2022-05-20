@@ -42,14 +42,42 @@
             exit;
         }                                           //consulta que muestra toda la base
         
+        if(isset($_POST['ins']))   //Realiza busqueda con cualquier parametro Ingresado
+        {
+            $id1=htmlentities($_POST['id1']);
+            $cod1=htmlentities($_POST['cod1']);
+            $nom1=htmlentities($_POST['nom1']);
+            $num1=htmlentities($_POST['num1']);
+            $tel1=htmlentities($_POST['tel1']);
+            $loc1=htmlentities($_POST['loc1']);
+            $pro1=htmlentities($_POST['pro1']);
+            $org1=htmlentities($_POST['org1']);
+
+            echo '<h3>INSERTAR</h3>';
+            echo '<form method="POST" action="./insertar.php">';
+            echo '<table>';
+            echo '<tr><td>CODIGO</td><td><input class="cen" type="text" name="codi" id="codi" value="'.$cod1.'"></td>';
+            echo '<tr><td>NOMBRE</td><td><input class="cen" type="text" name="nomi" id="nomi" value="'.$nom1.'"></td>';
+            echo '<tr><td>NUMERO</td><td><input class="cen" type="text" name="numi" id="numi" value="'.$num1.'"></td>';
+            echo '<tr><td>TELEFONO</td><td><input class="cen" type="text" name="teli" id="teli" value="'.$tel1.'"></td>';
+            echo '<tr><td>LOCALIDAD</td><td><input class="cen" type="text" name="loci" id="loci" value="'.$loc1.'"></td>';
+            echo '<tr><td>PROVINCIA</td><td><input class="cen" type="text" name="proi" id="proi" value="'.$pro1.'"></td>';
+            echo '<tr><td>ORGANIZACION</td><td><input class="cen" type="text" name="orgi" id="orgi" value="'.$org1.'"></td>';
+            echo '<tr><td><a href="./form_index.php"><input class="cen" type="button" name="back" id="back" value="Volver"></a></td>';
+            echo '<td><input class="cen" type="submit" name="crear" id="crear" value="CREAR"></td>';
+            echo '</tr>';
+            exit;
+        }
+        
     ?>
 
-    <h1>CRUD</h1>                                   
+    <h1>CRUD</h1>                          <!-- CABECERA FORMULARIO -->                    
     <h3>Usuario : <?php echo $_SESSION["usuario"]?> </h3>
     <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
     <table>                                 
         <tr>
             <td><input type="hidden"ID></td>
+            <td></td>
             <td>CODIGO</td>
             <td>NOMBRE</td>
             <td>NUMERO</td>
@@ -57,9 +85,11 @@
             <td>LOCALIDAD</td>
             <td>PROVINCIA</td>
             <td>ORGANIZACION</td>
-            <td colspan="2"><a href="./salir.php"><input type="button" name="salir" id="salir" value="Salir"></a></td>
+            <td><input type="submit" name="reset" id="reset" value="Reset"></a></td>
+            <td><a href="./salir.php"><input type="button" name="salir" id="salir" value="Salir"></a></td>
         </tr>
-        <tr>
+        <tr>                            <!-- INPUTS BUSCAR E INSERTAR -->
+            <td><input type="hidden" name="id1" ></td>
             <td></td>
             <td><input type="text" name="cod1" ></td>
             <td><input type="text" name="nom1" ></td>
@@ -69,21 +99,36 @@
             <td><input type="text" name="pro1" ></td>
             <td><input type="text" name="org1" ></td>
             <td><input class="cen" type="submit" name="bus" id="bus" value="BUSCAR"></td>
-            <td><input class="cen" type="button" name="ins" id="ins" value="INSERTAR"></td>
+            <td><input class="cen" type="submit" name="ins" id="ins" value="INSERTAR"></td>
         </tr>
-    </form>
+        
         <?php
         
-        if(!isset($_POST['bus']))
+        if(isset($_POST['bus']))   //Realiza busqueda con cualquier parametro Ingresado
         {
+            $id1=$_POST['id1'];
+            $cod1=$_POST['cod1'];
+            $nom1=$_POST['nom1'];
+            $num1=$_POST['num1'];
+            $tel1=$_POST['tel1'];
+            $loc1=$_POST['loc1'];
+            $pro1=$_POST['pro1'];
+            $org1=$_POST['org1'];
+            $contador=1;
+            $resulset=$conex->query("SELECT Id, Codigo, Nombre, Numero, Telefono, Localidad, Provincia, Organizacion FROM contactos_celulares_bps_ddjj
+            WHERE Codigo LIKE '%$cod1%' AND Nombre LIKE '%$nom1%' AND Numero LIKE '%$num1%' AND Telefono LIKE '%$tel1%' AND Localidad LIKE '%$loc1%'
+            AND Provincia LIKE '%$pro1%' AND Organizacion LIKE '%$org1%' ")->fetchAll(PDO::FETCH_OBJ);
+            
+        }else{
             exit;
         }
-        $resulset=$conex->query('SELECT Id, Codigo, Nombre, Numero, Telefono, Localidad, Provincia, Organizacion FROM contactos_celulares_bps_ddjj ')->fetchAll(PDO::FETCH_OBJ);
+        
         foreach($resulset as $contactos):
         ?>
     
-        <tr>
+        <tr>                                  <!-- IMPRESION RESULTADOS BUSQUEDA -->
             <td><input type="hidden" name="id" value="<?php echo $contactos->Id?>"></td>
+            <td><input type="button" name="id" value="<?php echo $contador?>"></td>
             <td><input type="text" name="codigo" value="<?php echo $contactos->Codigo?>"></td>
             <td><input type="text" name="nombre" value="<?php echo $contactos->Nombre?>"></td>
             <td><input type="text" name="nummero" value="<?php echo $contactos->Numero?>"></td>
@@ -95,9 +140,11 @@
             <td><a href="./delete.php?id=<?php echo $contactos->Id?> & cod=<?php echo $contactos->Codigo?> & nom=<?php echo $contactos->Nombre?> & num=<?php echo $contactos->Numero?> & tel=<?php echo $contactos->Telefono?> & loc=<?php echo $contactos->Localidad?> & pro=<?php echo $contactos->Provincia?> & org=<?php echo $contactos->Organizacion?>"><input class="cen" type="button" name="del" id="del" value="BORRAR"></a></td>
         </tr>
         <?php
+            $contador++;
             endforeach;
+            
         ?>
     </table>
-    
+    </form>
 </body>
 </html>

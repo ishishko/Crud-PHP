@@ -37,6 +37,7 @@
         include "./conexion.php";
         $id=$_POST['id'];
         $conex->query("DELETE FROM contactos_celulares_bps_ddjj where ID=$id");
+        
         header("location:form_index.php");
         
     }

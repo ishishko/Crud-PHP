@@ -47,6 +47,7 @@
         $sql="UPDATE contactos_celulares_bps_ddjj SET Codigo=:cod, Nombre=:nom, Numero=:num, Telefono=:tel, Localidad=:loc, Provincia=:pro, Organizacion=:org WHERE Id=:id";
         $resulset=$conex->prepare($sql);
         $resulset->execute(array(":id"=>$id, ":cod"=>$cod, ":nom"=>$nom, ":num"=>$num, ":tel"=>$tel, ":loc"=>$loc, ":pro"=>$pro, ":org"=>$org));
+        $resulset->closeCursor();
         header("location:./form_index.php");
 
 

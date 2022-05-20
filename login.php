@@ -66,13 +66,13 @@
                     if(isset($_POST['recordar']))
                     {
                         session_start();
-                        $_SESSION["usuario"]=$_POST["user"];                     //Inicia Sesion
+                        $_SESSION["usuario"]=$_POST["user"];                //Inicia Sesion
                         setcookie("usuario", $array[1],time()+82400);       //Crea Cookie Usuario logueado 1 mes
                         $resulset->closeCursor();
                         header("Location: ./form_index.php");
                     }else{
                         session_start();
-                        $_SESSION["usuario"]=$_POST["user"];                     //Inicia Sesion
+                        $_SESSION["usuario"]=$_POST["user"];                //Inicia Sesion
                         $resulset->closeCursor();
                         header("Location: ./form_index.php");
                     }
