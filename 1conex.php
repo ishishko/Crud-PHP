@@ -44,18 +44,20 @@
         $resulset_l=$conex->prepare($sql_limit);
         $resulset_l->execute(array());
 
-        while($registro=$resulset_l->fetch(PDO::FETCH_ASSOC))
+        while($registro=$resulset_l->fetch(PDO::FETCH_ASSOC))   //Muestra el contenido del Array query
         {
             echo "Codigo:" . $registro['Codigo'] . " || Nombre: " . $registro['Nombre'] . " || Telefono: " . $registro['Telefono'] . "<br>";
         
         }
         
+        $resulset->closeCursor();
+        
     }catch(Exception $e)
     {
-        die("ERROR:" . $e->getMessage());
+        die("ERROR:" . $e->getMessage());                       //Se obtiene mensaje por error de conexion
     }
 
-    for($i=1; $i<=$t_pag; $i++)
+    for($i=1; $i<=$t_pag; $i++)                                 //Muestra paginacion y selecciona pagina
     {
         echo " | <a href='?pagina=" . $i . "'> " . $i . "</a>";
     }
