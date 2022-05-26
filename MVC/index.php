@@ -5,11 +5,10 @@
 <title>Documento sin título</title>
 </head>
 <body>
+    
     <?php
 
-    session_start();
-    session_destroy();
-    header("location:login.php");
+    require_once("./controller/contactos_controller.php");
 
     ?>
 
