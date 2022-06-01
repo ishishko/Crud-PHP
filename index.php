@@ -9,8 +9,7 @@
 
 <body>
     <?php
-
-    require_once('./controller_login.php');
+    require_once('./controller_registro.php');
 
 
 
