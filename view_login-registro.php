@@ -49,26 +49,25 @@
 
 <body style="background-color:#9EDED8 ;">
 
+
     <h1 class="color">LOGIN USUARIOS</h1>
-    <form action="./view_login.php" method="POST">
+    <form action="./index.php" method="POST">
         <table>
             <tr>
-                <td class="der" class="color">Usuario :</td>
-                <td><input type="text" name="user"></td>
+                <td class="der" class="color">Usuario </td>
+                <td colspan="2"><input type="text" name="user"></td>
             </tr>
             <tr>
-                <td class="der">Password :</td>
-                <td><input type="password" name="contra"></td>
+                <td class="der">Password </td>
+                <td colspan="2"><input type="password" name="contra"></td>
             </tr>
             <tr>
-                <td class="der">Recordar :</td>
-                <td class="izq"><input type="checkbox" name="recordar" value="1" id="recordar"></td>
+                <td class="der">Recordar </td>
+                <td class="izq"><input type="checkbox" name="record"></td>
+                <td class="izq"><input type="submit" name="login" value="INGRESAR"></td>
             </tr>
             <tr>
-                <td class="cen" colspan="2"><input type="submit" name="login" value=" LOGIN "></td>
-            </tr>
-            <tr>
-                <td class="cen" colspan="2"><input type="submit" name="Crear" value="CREAR"></td>
+                <td class="cen" colspan="3"><input type="submit" name="crear" value="CREAR" size="30%"></td>
             </tr>
         </table>
     </form>
